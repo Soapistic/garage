@@ -14,22 +14,14 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 	<form action="" id="mechanic-form">
 		<input type="hidden" name ="id" value="<?php echo isset($id) ? $id : '' ?>">
 		<div class="form-group">
-			<label for="firstname" class="control-label">First Name</label>
+			<label for="firstname" class="control-label">Nom</label>
 			<input type="text" name="firstname" id="firstname" class="form-control form-control-sm rounded-0" value="<?php echo isset($firstname) ? $firstname : ''; ?>"  required/>
 		</div>
 		<div class="form-group">
-			<label for="middlename" class="control-label">Middle Name</label>
-			<input type="text" name="middlename" id="middlename" class="form-control form-control-sm rounded-0" value="<?php echo isset($middlename) ? $middlename : ''; ?>"  placeholder="optional"/>
-		</div>
-		<div class="form-group">
-			<label for="lastname" class="control-label">Last Name</label>
-			<input type="text" name="lastname" id="lastname" class="form-control form-control-sm rounded-0" value="<?php echo isset($lastname) ? $lastname : ''; ?>"  required/>
-		</div>
-		<div class="form-group">
-			<label for="status" class="control-label">Status</label>
+			<label for="status" class="control-label">Statut</label>
 			<select name="status" id="status" class="form-control form-control-sm rounded-0" required>
-			<option value="1" <?php echo isset($status) && $status == 1 ? 'selected' : '' ?>>Active</option>
-			<option value="0" <?php echo isset($status) && $status == 0 ? 'selected' : '' ?>>Inactive</option>
+			<option value="1" <?php echo isset($status) && $status == 1 ? 'selected' : '' ?>>Disponible</option>
+			<option value="0" <?php echo isset($status) && $status == 0 ? 'selected' : '' ?>>Indisponible</option>
 			</select>
 		</div>
 	</form>
@@ -52,7 +44,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
                 dataType: 'json',
 				error:err=>{
 					console.log(err)
-					alert_toast("An error occured",'error');
+					alert_toast("Une erreur s'est produite.",'error');
 					end_loader();
 				},
 				success:function(resp){
@@ -66,7 +58,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
                             $("html, body").animate({ scrollTop: _this.closest('.card').offset().top }, "fast");
                             end_loader()
                     }else{
-						alert_toast("An error occured",'error');
+						alert_toast("Une erreur s'est produite.",'error');
 						end_loader();
                         console.log(resp)
 					}

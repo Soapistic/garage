@@ -53,5 +53,4 @@
         var _base_url_ = '<?php echo base_url ?>';
     </script>
     <script src="<?php echo base_url ?>dist/js/script.js"></script>
-    <?php echo html_entity_decode($_settings->load_data()); ?>
   </head>

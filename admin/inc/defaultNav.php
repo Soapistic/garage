@@ -14,7 +14,7 @@
         <!-- Left navbar links -->
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a href="index3.html" class="nav-link">Home</a>
+            <a href="index3.html" class="nav-link">Accueil</a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">Contact</a>

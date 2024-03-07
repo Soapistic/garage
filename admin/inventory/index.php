@@ -13,7 +13,7 @@
 </style>
 <div class="card card-outline rounded-0 card-navy">
 	<div class="card-header">
-		<h3 class="card-title">Inventory</h3>
+		<h3 class="card-title">Inventaire</h3>
 	</div>
 	<div class="card-body">
         <div class="container-fluid">
@@ -30,18 +30,18 @@
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Date Created</th>
+						<th>Date de Création</th>
 						<th>Image</th>
-						<th>Product</th>
-						<th>Available Stock</th>
-						<th>Sold</th>
+						<th>Produit</th>
+						<th>Stock Disponible</th>
+						<th>Vendu</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
 					<?php 
 					$i = 1;
-						$qry = $conn->query("SELECT *, (coalesce((SELECT SUM(quantity) FROM `inventory_list` where product_id = product_list.id),0) - coalesce((SELECT SUM(tp.qty) FROM `transaction_products` tp inner join `transaction_list` tl on tp.transaction_id = tl.id where tp.product_id = product_list.id and tl.status != 4),0)) as `available`,coalesce((SELECT SUM(tp.qty) FROM `transaction_products` tp inner join `transaction_list` tl on tp.transaction_id = tl.id where tp.product_id = product_list.id and tl.status != 4),0) as `sold` from `product_list` where delete_flag = 0 order by `name` asc ");
+						$qry = $conn->query("SELECT *, (coalesce((SELECT SUM(quantity) FROM `inventory_list` where product_id = product_list.id),0) - coalesce((SELECT SUM(tp.qty) FROM `transaction_products` tp inner join `transaction_list` tl on tp.transaction_id = tl.id where tp.product_id = product_list.id and tl.status != 0),0)) as `available`,coalesce((SELECT SUM(tp.qty) FROM `transaction_products` tp inner join `transaction_list` tl on tp.transaction_id = tl.id where tp.product_id = product_list.id and tl.status != 0),0) as `sold` from `product_list` where delete_flag = 0 order by `name` asc ");
 						while($row = $qry->fetch_assoc()):
 					?>
 						<tr>
@@ -55,7 +55,7 @@
 							<td class="text-right"><?php echo $row['sold'] ?></td>
 							<td align="center">
 								 <a href="./?page=inventory/view_details&id=<?= $row['id'] ?>" class="btn btn-flat p-1 btn-default btn-sm ">
-				                  		<i class="far fa-eye"></i> View
+				                  		<i class="far fa-eye"></i> Afficher
 				                  </a>
 							</td>
 						</tr>

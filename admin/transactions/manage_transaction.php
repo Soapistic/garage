@@ -24,33 +24,67 @@ if(isset($_GET['id'])){
                     <form action="" id="transaction-form">
                         <input type="hidden" name="id" value="<?= isset($id) ? $id : '' ?>">
                         <input type="hidden" name="amount" value="<?= isset($amount) ? $amount : '' ?>">
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group mb-3">
                                     <label for="client_name" class="control-label">Client Full Name</label>
                                     <input type="text" name="client_name" id="client_name" class="form-control form-control-sm rounded-0" value="<?= isset($client_name) ? $client_name : "" ?>" required="required">
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group mb-3">
-                                    <label for="contact" class="control-label">Client Contact #</label>
+                                    <label for="client_name" class="control-label">Nom du client</label>
+                                    <input type="text" name="client_name" id="client_name" class="form-control form-control-sm rounded-0" value="<?= isset($client_name) ? $client_name : "" ?>" required="required">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group mb-3">
+                                    <label for="contact" class="control-label">Numéro téléphone du client:</label>
                                     <input type="text" name="contact" id="contact" class="form-control form-control-sm rounded-0" value="<?= isset($contact) ? $contact : "" ?>" required="required">
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group mb-3">
-                                    <label for="email" class="control-label">Client Email</label>
-                                    <input type="email" name="email" id="email" class="form-control form-control-sm rounded-0" value="<?= isset($email) ? $email : "" ?>" required="required">
+                                    <label for="ice" class="control-label">ICE</label>
+                                    <input type="text" name="ice" id="ice" class="form-control form-control-sm rounded-0" value="<?= isset($ice) ? $ice : "" ?>">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group mb-3">
+                                    <label for="rc" class="control-label">RC</label>
+                                    <input type="text" name="rc" id="rc" class="form-control form-control-sm rounded-0" value="<?= isset($rc) ? $rc : "" ?>">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group mb-3">
-                                    <label for="address" class="control-label">Address</label>
-                                    <textarea name="address" id="address" class="form-control form-control-sm rounded-0" required="required"><?= isset($address) ? $address : "" ?></textarea>
+                                    <label for="marque" class="control-label">Marque</label>
+                                    <input type="text" name="marque" id="marque" class="form-control form-control-sm rounded-0" value="<?= isset($marque) ? $marque : "" ?>" required="required">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group mb-3">
+                                    <label for="modele" class="control-label">Modèle</label>
+                                    <input type="text" name="modele" id="modele" class="form-control form-control-sm rounded-0" value="<?= isset($modele) ? $modele : "" ?>" required="required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group mb-3">
+                                    <label for="matricule" class="control-label">Matricule</label>
+                                    <input type="text" name="matricule" id="matricule" class="form-control form-control-sm rounded-0" value="<?= isset($matricule) ? $matricule : "" ?>" required="required">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group mb-3">
+                                    <label for="kilometrage" class="control-label">Kilométrage</label>
+                                    <input type="text" name="kilometrage" id="kilometrage" class="form-control form-control-sm rounded-0" value="<?= isset($kilometrage) ? $kilometrage : "" ?>" required="required">
                                 </div>
                             </div>
                         </div>
@@ -62,7 +96,7 @@ if(isset($_GET['id'])){
                                     <div class="row align-items-end">
                                         <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
                                             <div class="form-group mb-0">
-                                                <label for="service_sel" class="control-label">Select Service</label>
+                                                <label for="service_sel" class="control-label">Séléctionnez un service</label>
                                                 <select id="service_sel" class="form-control form-control-sm rounded">
                                                     <option value="" disabled selected></option>
                                                     <?php 
@@ -88,8 +122,8 @@ if(isset($_GET['id'])){
                                         <thead>
                                             <tr class="bg-gradient-navy">
                                                 <th class="text-center"></th>
-                                                <th class="text-center">Service</th>
-                                                <th class="text-center">Price</th>
+                                                <th class="text-center">Désignation</th>
+                                                <th class="text-center">Prix</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -106,10 +140,11 @@ if(isset($_GET['id'])){
                                                 </td>
                                                 <td>
                                                     <input type="hidden" name="service_id[]" value="<?= $row['service_id'] ?>">
-                                                    <input type="hidden" name="service_price[]" value="<?= $row['price'] ?>">
                                                     <span class="service_name"><?= $row['service'] ?></span>
                                                 </td>
-                                                <td class="text-right service_price"><?= format_num($row['price']) ?></td>
+                                                <td class="text-right service_price">
+                                                    <input type="number" id="service_price[]" name="service_price[]" value="<?= $row['price'] ?>">
+                                                </td>
                                             </tr>
                                             <?php endwhile; ?>
                                             <?php endif; ?>
@@ -125,15 +160,15 @@ if(isset($_GET['id'])){
                             </div>
                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                                 <fieldset>
-                                    <legend>Products</legend>
+                                    <legend>Produits</legend>
                                     <div class="row align-items-end">
                                         <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
                                             <div class="form-group mb-0">
-                                                <label for="product_sel" class="control-label">Select Product</label>
+                                                <label for="product_sel" class="control-label">Sélectionnez un produit</label>
                                                 <select id="product_sel" class="form-control form-control-sm rounded">
                                                     <option value="" disabled selected></option>
                                                     <?php 
-                                                    $product_qry = $conn->query("SELECT * FROM `product_list` where delete_flag = 0 and `status` = 1 and (coalesce((SELECT SUM(quantity) FROM `inventory_list` where product_id = product_list.id),0) - coalesce((SELECT SUM(tp.qty) FROM `transaction_products` tp inner join `transaction_list` tl on tp.transaction_id = tl.id where tp.product_id = product_list.id and tl.status != 4),0)) > 0 ".(isset($id) ? " or id = '{$id}' " : "")." order by `name`");
+                                                    $product_qry = $conn->query("SELECT * FROM `product_list` where delete_flag = 0 and `status` = 1 and (coalesce((SELECT SUM(quantity) FROM `inventory_list` where product_id = product_list.id),0) - coalesce((SELECT SUM(tp.qty) FROM `transaction_products` tp inner join `transaction_list` tl on tp.transaction_id = tl.id where tp.product_id = product_list.id and tl.status != 0),0)) > 0 ".(isset($id) ? " or id = '{$id}' " : "")." order by `name`");
                                                     while($row = $product_qry->fetch_assoc()):
                                                     ?>
                                                     <option value="<?= $row['id'] ?>" data-price = "<?= $row['price'] ?>"><?= $row['name'] ?></option>
@@ -157,10 +192,10 @@ if(isset($_GET['id'])){
                                         <thead>
                                             <tr class="bg-gradient-navy">
                                                 <th class="text-center"></th>
-                                                <th class="text-center">Item Name</th>
-                                                <th class="text-center">Qty</th>
-                                                <th class="text-center">Price</th>
-                                                <th class="text-center">Total</th>
+                                                <th class="text-center">Désignation</th>
+                                                <th class="text-center">Qté</th>
+                                                <th class="text-center">P.U.HT</th>
+                                                <th class="text-center">P.M.HT</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -177,11 +212,12 @@ if(isset($_GET['id'])){
                                                 </td>
                                                 <td>
                                                     <input type="hidden" name="product_id[]" value="<?= $row['product_id'] ?>">
-                                                    <input type="hidden" name="product_price[]" value="<?= $row['price'] ?>">
                                                     <span class="product_name"><?= $row['product'] ?></span>
                                                 </td>
                                                 <td class=""><input type="number" min="1" class="form-control form-control-sm rounded-0 text-right" name="product_qty[]" value="<?= $row['qty'] ?>"></td>
-                                                <td class="text-right product_price"><?= $row['price'] ?></td>
+                                                <td class="">
+                                                    <input type="number" name="product_price[]" value="<?= $row['price'] ?>">
+                                                </td>
                                                 <td class="text-right product_total"><?= format_num($row['price'] * $row['qty']) ?></td>
                                             </tr>
                                         <?php endwhile; ?>
@@ -200,28 +236,6 @@ if(isset($_GET['id'])){
                         <div class="clear-fix mb-3"></div>
                         <h2 class="text-navy text-right">Total Payable Amount: <b id="amount"><?= isset($amount) ? format_num($amount) : "0.00" ?></b></h2>
                         <hr>
-                        <?php if($_settings->userdata('type') == 3 && !isset($id)): ?>
-                            <input type="hidden" name="mechanic_id" value="<?= $_settings->userdata('id') ?>">
-                        <?php endif; ?>
-                        <?php if($_settings->userdata('type') != 3): ?>
-                        <fieldset>
-                            <legend>Assign</legend>
-                            <div class="row">
-                                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                                    <select name="mechanic_id" id="mechanic_id" class="form-control form-control rounded-0">
-                                        <option value="" disabled <?= !isset($mechanic_id) ? "selected" : "" ?>></option>
-                                        <option value="" <?= isset($mechanic_id) && in_array($mechanic_id,[null,""]) ? "selected" : "" ?>>Unset</option>
-                                        <?php 
-                                        $mechanic_qry = $conn->query("SELECT *,concat(firstname,' ', coalesce(concat(middlename,' '),''), lastname) as `name` FROM `mechanic_list` where delete_flag = 0 and `status` = 1 ".(isset($mechanic_id) && !is_null($mechanic_id) ? " or id = '{$mechanic_id}' " : '')." order by `name` asc");
-                                        while($row = $mechanic_qry->fetch_array()):
-                                        ?>
-                                        <option value="<?= $row['id'] ?>" <?= isset($mechanic_id) && $mechanic_id == $row['id'] ? "selected" : "" ?>><?= $row['name'] ?></option>
-                                        <?php endwhile; ?>
-                                    </select>
-                                </div>
-                            </div>
-                        </fieldset>
-                        <?php endif; ?>
                     </form>
                 </div>
             </div>
@@ -243,10 +257,11 @@ if(isset($_GET['id'])){
         </td>
         <td>
             <input type="hidden" name="service_id[]" value="">
-            <input type="hidden" name="service_price[]" value="0">
             <span class="service_name"></span>
         </td>
-        <td class="text-right service_price"></td>
+        <td class="">
+            <input type="number" min="1" class="form-control form-control-sm rounded-0 text-right" name="service_price[]" value="1">
+        </td>
     </tr>
 </noscript>
 <noscript id="product-clone">
@@ -256,11 +271,10 @@ if(isset($_GET['id'])){
         </td>
         <td>
             <input type="hidden" name="product_id[]" value="">
-            <input type="hidden" name="product_price[]" value="0">
             <span class="product_name"></span>
         </td>
         <td class=""><input type="number" min="1" class="form-control form-control-sm rounded-0 text-right" name="product_qty[]" value="1"></td>
-        <td class="text-right product_price"></td>
+        <td class=""><input type="number" min="1" class="form-control form-control-sm rounded-0 text-right" name="product_price[]" value="1"></td>
         <td class="text-right product_total"></td>
     </tr>
 </noscript>
@@ -288,7 +302,6 @@ if(isset($_GET['id'])){
     }
     function calc_product(){
         var total = 0;
-        
         $('#product-list tbody tr').each(function(){
             var qty = $(this).find('[name="product_qty[]"]').val()
             qty = qty > 0 ? qty : 0
@@ -304,12 +317,12 @@ if(isset($_GET['id'])){
             containerCssClass:'form-control form-control-sm rounded-0'
         })
         $('#service_sel').select2({
-            placeholder:"Select service here",
+            placeholder:"Séléctionnez un service",
             width:'100%',
             containerCssClass:'form-control form-control-sm rounded-0'
         })
         $('#product_sel').select2({
-            placeholder:"Select product here",
+            placeholder:"Sélectionnez un produit",
             width:'100%',
             containerCssClass:'form-control form-control-sm rounded-0'
         })
@@ -320,6 +333,14 @@ if(isset($_GET['id'])){
                 calc_service()
             }
         })
+        $('#service-list tbody tr').find('[name="service_price[]"]').on('input change', function(){
+            var tr = $(this).closest('tr')
+            var price = $(this).val()
+            price = price > 0 ? price : 0
+            var total = parseFloat(price)
+            tr.find('#service_total').text(parseFloat(total).toLocaleString())
+            calc_service()
+        })
         $('#product-list tbody tr').find('.rem-product').click(function(){
             var tr = $(this).closest('tr')
             if(confirm("Are you sure to remove "+(tr.find('.product_name').text())+" from product list?") === true){
@@ -327,15 +348,26 @@ if(isset($_GET['id'])){
                 calc_product()
             }
         })
+        var qtyInput = $('#product-list tbody tr').find('[name="product_qty[]"]');
+        $('#product-list tbody tr').find('[name="product_price[]"]').on('input change', function(){
+            var tr = $(this).closest('tr');
+            var newPrice = $(this).val();
+            price = newPrice;
+            var qty = tr.find('[name="product_qty[]"]').val();
+            qty = qty > 0 ? qty : 0;
+            var total = parseFloat(qty) * parseFloat(newPrice);
+            tr.find('.product_total').text(parseFloat(total).toLocaleString());
+            calc_product();
+        });
         $('#product-list tbody tr').find('[name="product_qty[]"]').on('input change', function(){
-            var tr = $(this).closest('tr')
-            var qty = $(this).val()
-            qty = qty > 0 ? qty : 0
-            var total = parseFloat(qty) * parseFloat(price)
-            tr.find('.product_total').text(parseFloat(total).toLocaleString())
-            calc_product()
-
-        })
+            var tr = $(this).closest('tr');
+            var qty = $(this).val();
+            qty = qty > 0 ? qty : 0;
+            price = tr.find('[name="product_price[]"]').val();
+            var total = parseFloat(qty) * parseFloat(price);
+            tr.find('.product_total').text(parseFloat(total).toLocaleString());
+            calc_product();
+        });
         $('#add_service').click(function(){
             if($('#service_sel').val() == null)
             return false;
@@ -350,7 +382,6 @@ if(isset($_GET['id'])){
             tr.find('input[name="service_id[]"]').val(id)
             tr.find('input[name="service_price[]"]').val(price)
             tr.find('.service_name').text(name)
-            tr.find('.service_price').text(parseFloat(price).toLocaleString())
             $('#service-list tbody').append(tr)
             calc_service()
             tr.find('.rem-service').click(function(){
@@ -359,42 +390,57 @@ if(isset($_GET['id'])){
                     calc_service()
                 }
             })
+            tr.find('[name="service_price[]"]').on('input change', function(){
+                var price = $(this).val()
+                price = price > 0 ? price : 0
+                var total = parseFloat(price)
+                tr.find('#service_total').text(parseFloat(total).toLocaleString())
+                calc_service()
+            })
             $('#service_sel').val('').trigger("change")
         })
         $('#add_product').click(function(){
             if($('#product_sel').val() == null)
-            return false;
-            var id = $('#product_sel').val()
+                return false;
+            var id = $('#product_sel').val();
             if($('#product-list tbody tr input[name="product_id[]"][value="'+id+'"]').length > 0){
-                alert("Product already on the list.")
+                alert("Product already on the list.");
                 return false;
             }
-            var name = $('#product_sel option[value="'+id+'"]').text()
-            var price = $('#product_sel option[value="'+id+'"]').attr('data-price')
-            var tr = $($('noscript#product-clone').html()).clone()
-            tr.find('input[name="product_id[]"]').val(id)
-            tr.find('input[name="product_price[]"]').val(price)
-            tr.find('.product_name').text(name)
-            tr.find('.product_price').text(parseFloat(price).toLocaleString())
-            tr.find('.product_total').text(parseFloat(price).toLocaleString())
-            $('#product-list tbody').append(tr)
-            calc_product()
+            var name = $('#product_sel option[value="'+id+'"]').text();
+            var price = $('#product_sel option[value="'+id+'"]').attr('data-price');
+            var tr = $($('noscript#product-clone').html()).clone();
+            tr.find('input[name="product_id[]"]').val(id);
+            tr.find('input[name="product_price[]"]').val(price);
+            tr.find('.product_name').text(name);
+            tr.find('.product_total').text(parseFloat(price).toLocaleString());
+            $('#product-list tbody').append(tr);
+            calc_product();
             tr.find('.rem-product').click(function(){
                 if(confirm("Are you sure to remove "+name+" from product list?") === true){
-                    tr.remove()
-                    calc_product()
+                    tr.remove();
+                    calc_product();
                 }
-            })
-            tr.find('[name="product_qty[]"]').on('input change', function(){
-                var qty = $(this).val()
-                qty = qty > 0 ? qty : 0
-                var total = parseFloat(qty) * parseFloat(price)
-                tr.find('.product_total').text(parseFloat(total).toLocaleString())
-                calc_product()
-
-            })
-            $('#product_sel').val('').trigger("change")
-        })
+            });
+            var qtyInput = tr.find('[name="product_qty[]"]');
+            tr.find('[name="product_price[]"]').on('input change', function(){
+                var newPrice = $(this).val();
+                price = newPrice;
+                var qty = qtyInput.val();
+                qty = qty > 0 ? qty : 0;
+                var total = parseFloat(qty) * parseFloat(newPrice);
+                tr.find('.product_total').text(parseFloat(total).toLocaleString());
+                calc_product();
+            });
+            qtyInput.on('input change', function(){
+                var qty = $(this).val();
+                qty = qty > 0 ? qty : 0;
+                var total = parseFloat(qty) * parseFloat(price);
+                tr.find('.product_total').text(parseFloat(total).toLocaleString());
+                calc_product();
+            });
+            $('#product_sel').val('').trigger("change");
+        });
         $('#product-list, #service-list').find('td, th').addClass('px-2 py-1 align-middle')
         $('#transaction-form').submit(function(e){
 			e.preventDefault();

@@ -13,13 +13,13 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
     <form action="" id="update_status-form">
         <input type="hidden" name="id" value="<?= isset($id) ? $id : '' ?>">
         <div class="form-group mb-3">
-            <label for="status" class="control-label">Status</label>
+            <label for="status" class="control-label">Statut</label>
             <select name="status" id="status" class="form-control rounded-0">
-                <option value="0" <?= isset($status) && $status == 0 ? "selected" : "" ?>>Pending</option>
-                <option value="1" <?= isset($status) && $status == 1 ? "selected" : "" ?>>On-Progress</option>
-                <option value="2" <?= isset($status) && $status == 2 ? "selected" : "" ?>>Done</option>
-                <option value="3" <?= isset($status) && $status == 3 ? "selected" : "" ?>>Paid</option>
-                <option value="4" <?= isset($status) && $status == 4 ? "selected" : "" ?>>Cancelled</option>
+                <option value="0" <?= isset($status) && $status == 0 ? "selected" : "" ?>>En Attente</option>
+                <option value="1" <?= isset($status) && $status == 1 ? "selected" : "" ?>>En Cours</option>
+                <option value="2" <?= isset($status) && $status == 2 ? "selected" : "" ?>>Validé</option>
+                <option value="3" <?= isset($status) && $status == 3 ? "selected" : "" ?>>Payé</option>
+                <option value="4" <?= isset($status) && $status == 4 ? "selected" : "" ?>>Annulé</option>
             </select>
         </div>
     </form>

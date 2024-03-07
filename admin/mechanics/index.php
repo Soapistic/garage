@@ -5,9 +5,9 @@
 <?php endif;?>
 <div class="card card-outline rounded-0 card-navy">
 	<div class="card-header">
-		<h3 class="card-title">List of Mechanics</h3>
+		<h3 class="card-title">Liste des Fournisseurs</h3>
 		<div class="card-tools">
-			<a href="javascript:void(0)" id="create_new" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span>  Create New</a>
+			<a href="javascript:void(0)" id="create_new" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span>  Créer</a>
 		</div>
 	</div>
 	<div class="card-body">
@@ -23,27 +23,27 @@
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Date Created</th>
-						<th>Name</th>
-						<th>Status</th>
+						<th>Date de Création</th>
+						<th>Nom</th>
+						<th>Statut</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
 					<?php 
 					$i = 1;
-						$qry = $conn->query("SELECT *,concat(firstname, ' ', coalesce(concat(middlename, ' '),''), lastname) as `name` from `mechanic_list` where delete_flag = 0 order by `name` asc ");
+						$qry = $conn->query("SELECT * from `mechanic_list`");
 						while($row = $qry->fetch_assoc()):
 					?>
 						<tr>
 							<td class="text-center"><?php echo $i++; ?></td>
 							<td><?php echo date("Y-m-d H:i",strtotime($row['date_added'])) ?></td>
-							<td><?php echo $row['name'] ?></td>
+							<td><?php echo $row['firstname'] ?></td>
 							<td class="text-center">
                                 <?php if($row['status'] == 1): ?>
-                                    <span class="badge badge-success px-3 rounded-pill">Active</span>
+                                    <span class="badge badge-success px-3 rounded-pill">Disponible</span>
                                 <?php else: ?>
-                                    <span class="badge badge-danger px-3 rounded-pill">Inactive</span>
+                                    <span class="badge badge-danger px-3 rounded-pill">Indisponible</span>
                                 <?php endif; ?>
                             </td>
 							<td align="center">
@@ -52,11 +52,7 @@
 				                    <span class="sr-only">Toggle Dropdown</span>
 				                  </button>
 				                  <div class="dropdown-menu" role="menu">
-				                    <a class="dropdown-item view_data" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-eye text-dark"></span> View</a>
-				                    <div class="dropdown-divider"></div>
-				                    <a class="dropdown-item edit_data" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-edit text-primary"></span> Edit</a>
-				                    <div class="dropdown-divider"></div>
-				                    <a class="dropdown-item delete_data" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-trash text-danger"></span> Delete</a>
+				                    <a class="dropdown-item delete_data" id="delete_data" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-trash text-danger"></span> Supprimer</a>
 				                  </div>
 							</td>
 						</tr>
@@ -69,16 +65,10 @@
 <script>
 	$(document).ready(function(){
 		$('.delete_data').click(function(){
-			_conf("Are you sure to delete this Mechanic permanently?","delete_mechanic",[$(this).attr('data-id')])
+			_conf("Supprimer ce fournisseur??","delete_mechanic",[$(this).attr('data-id')])
 		})
 		$('#create_new').click(function(){
-			uni_modal("<i class='fa fa-plus'></i> Add New Mechanic","mechanics/manage_mechanic.php")
-		})
-		$('.view_data').click(function(){
-			uni_modal("<i class='fa fa-bars'></i> Mechanic Details","mechanics/view_mechanic.php?id="+$(this).attr('data-id'))
-		})
-		$('.edit_data').click(function(){
-			uni_modal("<i class='fa fa-edit'></i> Update Mechanic Details","mechanics/manage_mechanic.php?id="+$(this).attr('data-id'))
+			uni_modal("<i class='fa fa-plus'></i> Ajouter un fournisseur","mechanics/manage_mechanic.php")
 		})
 		$('.table').dataTable({
 			columnDefs: [
@@ -97,14 +87,14 @@
 			dataType:"json",
 			error:err=>{
 				console.log(err)
-				alert_toast("An error occured.",'error');
+				alert_toast("Une erreur s'est produite.",'error');
 				end_loader();
 			},
 			success:function(resp){
 				if(typeof resp== 'object' && resp.status == 'success'){
 					location.reload();
 				}else{
-					alert_toast("An error occured.",'error');
+					alert_toast("Une erreur s'est produite.",'error');
 					end_loader();
 				}
 			}

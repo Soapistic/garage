@@ -30,51 +30,32 @@ if(isset($_GET['id'])){
 <div class="content py-3">
     <div class="card card-outline card-navy rounded-0 shadow">
         <div class="card-header">
-            <h4 class="card-title">Transaction Details: <b><?= isset($code) ? $code : "" ?></b></h4>
+            <h4 class="card-title">Détails du devis N#: <b><?= isset($code) ? $code : "" ?></b></h4>
             <div class="card-tools">
-                <a href="./?page=transactions" class="btn btn-default border btn-sm"><i class="fa fa-angle-left"></i> Back to List</a>
+                <a href="./?page=transactions" class="btn btn-default border btn-sm"><i class="fa fa-angle-left"></i> Retour à la Liste</a>
             </div>
         </div>
         <div class="card-body">
             <div class="container-fluid" id="printout">
                 <div class="row mb-0">
-                    <div class="col-3 py-1 px-2 border border-navy bg-gradient-navy mb-0"><b>Transaction Code</b></div>
+                    <div class="col-3 py-1 px-2 border border-navy bg-gradient-navy mb-0"><b>Code du devis:</b></div>
                     <div class="col-9 py-1 px-2 border mb-0"><?= isset($code) ? $code : '' ?></div>
-                    <div class="col-3 py-1 px-2 border border-navy bg-gradient-navy mb-0"><b>Client Name</b></div>
+                    <div class="col-3 py-1 px-2 border border-navy bg-gradient-navy mb-0"><b>Nom du client</b></div>
                     <div class="col-9 py-1 px-2 border mb-0"><?= isset($client_name) ? $client_name : '' ?></div>
-                    <div class="col-3 py-1 px-2 border border-navy bg-gradient-navy mb-0"><b>Contact #</b></div>
+                    <div class="col-3 py-1 px-2 border border-navy bg-gradient-navy mb-0"><b>Numéro de téléphone du client:</b></div>
                     <div class="col-9 py-1 px-2 border mb-0"><?= isset($contact) ? $contact : '' ?></div>
-                    <div class="col-3 py-1 px-2 border border-navy bg-gradient-navy mb-0"><b>Email</b></div>
-                    <div class="col-9 py-1 px-2 border mb-0"><?= isset($email) ? $email : '' ?></div>
-                    <div class="col-3 py-1 px-2 border border-navy bg-gradient-navy mb-0"><b>Address</b></div>
-                    <div class="col-9 py-1 px-2 border mb-0"><?= isset($address) ? $address : '' ?></div>
-                    <div class="col-3 py-1 px-2 border border-navy bg-gradient-navy mb-0"><b>Status</b></div>
-                    <div class="col-9 py-1 px-2 border mb-0">
-                        <?php 
-                        $status = isset($status) ? $status : '';
-                        switch($status){
-                            case 0:
-                                echo '<span class="badge badge-default border px-3 rounded-pill">Pending</span>';
-                                break;
-                            case 1:
-                                echo '<span class="badge badge-primary px-3 rounded-pill">On-Progress</span>';
-                                break;
-                            case 2:
-                                echo '<span class="badge badge-success px-3 rounded-pill">Done</span>';
-                                break;
-                            case 3:
-                                echo '<span class="badge badge-teal bg-gradient-teal px-3 rounded-pill">Paid</span>';
-                                break;
-                            case 4:
-                                echo '<span class="badge badge-danger px-3 rounded-pill">Cancelled</span>';
-                                break;
-                        }
-                        ?>
-                    </div>
-                    <div class="col-3 py-1 px-2 border border-navy bg-gradient-navy mb-0"><b>Assigned Mechanic</b></div>
-                    <div class="col-9 py-1 px-2 border mb-0"><?= isset($mechanic_name) ? $mechanic_name : '' ?></div>
-                    <div class="col-3 py-1 px-2 border border-navy bg-gradient-navy mb-0"><b>Prepared By</b></div>
-                    <div class="col-9 py-1 px-2 border mb-0"><?= isset($user_name) ? $user_name : '' ?></div>
+                    <div class="col-3 py-1 px-2 border border-navy bg-gradient-navy mb-0"><b>ICE</b></div>
+                    <div class="col-9 py-1 px-2 border mb-0"><?= isset($ice) ? $ice : '' ?></div>
+                    <div class="col-3 py-1 px-2 border border-navy bg-gradient-navy mb-0"><b>RC</b></div>
+                    <div class="col-9 py-1 px-2 border mb-0"><?= isset($rc) ? $rc : '' ?></div>
+                    <div class="col-3 py-1 px-2 border border-navy bg-gradient-navy mb-0"><b>Marque</b></div>
+                    <div class="col-9 py-1 px-2 border mb-0"><?= isset($marque) ? $marque : '' ?></div>
+                    <div class="col-3 py-1 px-2 border border-navy bg-gradient-navy mb-0"><b>Modèle</b></div>
+                    <div class="col-9 py-1 px-2 border mb-0"><?= isset($modele) ? $modele : '' ?></div>
+                    <div class="col-3 py-1 px-2 border border-navy bg-gradient-navy mb-0"><b>Matricule</b></div>
+                    <div class="col-9 py-1 px-2 border mb-0"><?= isset($matricule) ? $matricule : '' ?></div>
+                    <div class="col-3 py-1 px-2 border border-navy bg-gradient-navy mb-0"><b>Kilométrage</b></div>
+                    <div class="col-9 py-1 px-2 border mb-0"><?= isset($kilometrage) ? $kilometrage : '' ?></div>
                 </div>
                 <div class="clear-fix mb-2"></div>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -89,7 +70,7 @@ if(isset($_GET['id'])){
                             <thead>
                                 <tr class="bg-gradient-navy">
                                     <th class="text-center">Service</th>
-                                    <th class="text-center">Price</th>
+                                    <th class="text-center">Prix HT</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -117,7 +98,7 @@ if(isset($_GET['id'])){
                 <hr>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <fieldset>
-                        <legend>Products</legend>
+                        <legend>Produits</legend>
                         <div class="clear-fix mb-2"></div>
                         <table class="table table-striped table-bordered" id="product-list">
                             <colgroup>
@@ -128,10 +109,10 @@ if(isset($_GET['id'])){
                             </colgroup>
                             <thead>
                                 <tr class="bg-gradient-navy">
-                                    <th class="text-center">Item Name</th>
-                                    <th class="text-center">Qty</th>
-                                    <th class="text-center">Price</th>
-                                    <th class="text-center">Total</th>
+                                    <th class="text-center">Désignation</th>
+                                    <th class="text-center">Qté</th>
+                                    <th class="text-center">P.U.HT</th>
+                                    <th class="text-center">P.M.HT</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -160,28 +141,84 @@ if(isset($_GET['id'])){
                 </div>
                 <hr>
                 <div class="clear-fix mb-3"></div>
-                <h2 class="text-navy text-right">Total Payable Amount: <b id="amount"><?= isset($amount) ? format_num($amount) : "0.00" ?></b></h2>
+                <h2 class="text-navy text-right">Total HT: <b id="amount"><?= isset($amount) ? format_num($amount) : "0.00" ?> MAD</b></h2>
             </div>
             <hr>
             <div class="row justify-content-center">
-                <button class="btn btn-primary bg-gradient-navy border col-lg-3 col-md-4 col-sm-12 col-xs-12 rounded-pill" id="update_status" type="button">Update Status</button>
-                <a class="btn btn-primary bg-gradient-primary border col-lg-3 col-md-4 col-sm-12 col-xs-12 rounded-pill" href="./?page=transactions/manage_transaction&id=<?= isset($id) ? $id : '' ?>"><i class="fa fa-edit"></i> Edit</a>
-                <button class="btn btn-light bg-gradient-light border col-lg-3 col-md-4 col-sm-12 col-xs-12 rounded-pill" id="print"><i class="fa fa-print"></i> Print</button>
-                <button class="btn btn-danger bg-gradient-danger border col-lg-3 col-md-4 col-sm-12 col-xs-12 rounded-pill" id="delete_transaction" type="button"><i class="fa fa-trash"></i> Delete Transaction</button>
+                <button class="btn btn-primary bg-gradient-green border col-lg-3 col-md-4 col-sm-12 col-xs-12 rounded-pill" id="update_status" type="button">Valider le devis</button>
+                <a class="btn btn-primary bg-gradient-primary border col-lg-3 col-md-4 col-sm-12 col-xs-12 rounded-pill" href="./?page=transactions/manage_transaction&id=<?= isset($id) ? $id : '' ?>"><i class="fa fa-edit"></i>Modifier</a>
+                <button class="btn btn-light bg-gradient-light border col-lg-3 col-md-4 col-sm-12 col-xs-12 rounded-pill" id="print"><i class="fa fa-print"></i> Imprimer</button>
+                <button class="btn btn-light bg-gradient-light border col-lg-3 col-md-4 col-sm-12 col-xs-12 rounded-pill" id="print-immobilisation"><i class="fa fa-print"></i> Imprimer l'attestation d'immobilisation</button>
+                <button class="btn btn-danger bg-gradient-danger border col-lg-3 col-md-4 col-sm-12 col-xs-12 rounded-pill" id="delete_transaction" type="button"><i class="fa fa-trash"></i> Supprimer</button>
             </div>
         </div>
     </div>
 </div>
-<noscript id="print-header">
+<noscript id="immobilisation">
+<div style="line-height:1em">
+            <h4 class="text-center"><?= $_settings->info('name') ?></h4>
+            <h3 class="text-center"><b>Attestation d'immobilisation</b></h3>
+        </div>
     <div class="d-flex w-100">
         <div class="col-2 text-center">
-            <img style="height:.8in;width:.8in!important;object-fit:cover;object-position:center center" src="<?= validate_image($_settings->info('logo')) ?>" alt="" class="w-100 img-thumbnail rounded-circle">
+            <img style="height:1.8in;width:2in!important;object-fit:cover;object-position:center center" src="<?= validate_image($_settings->info('logo')) ?>" alt="" class="w-100 img-thumbnail rounded-circle">
         </div>
-        <div class="col-8 text-center">
-            <div style="line-height:1em">
-                <h4 class="text-center"><?= $_settings->info('name') ?></h4>
-                <h3 class="text-center"><b>Transaction Details</b></h3>
+        <div class="col-10" style="margin-top:auto;">
+            <h3 class="text-right">
+            Electromécanique, Diagnostic
+            <br>Carosserie, Peinture
+            <br>Mécanique et pièces de rechange
+        </h3>
+        </div>
+    </div>
+    <hr>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-text" style="line-height:200%;">Nous soussigne <strong>MB Garage</strong> que la voiture de marque <strong><?=isset($marque) ? $marque : '' ?></strong>
+                        <br>
+                        Immatriculée sous le N# <strong><?=isset($matricule) ? $matricule : '' ?></strong>
+                        <br>
+                        Appartenant à <strong><?=isset($client_name) ? $client_name : '' ?></strong> est immobilisée pour une période de ... <strong>jours</strong>, à partir du ... / ... /....... pour des travaux des réparation.
+                    </h3>
+
+                       
+                        <h3 class="text-right mt-5">Fait à <strong>Salé</strong>, le <strong> <?= date("j/n/Y");?></strong></h3>
+                        <div class="signature text-right">
+                            <h3 class="mb-0">Signature :</h3>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+    </div>
+</noscript>
+
+<noscript id="footer" style="">
+    <div class="footer mt-20  text-center">
+        <h4>Patente : 29402474   IF : 45613884   ICE : 002458535000050</h4>
+        <h4>Siege social : N# 32 SANIAT BOUFFELJA, ROUTE DE LA PLAGE SALE, GSM : 06 73 55 09 71</h4>
+        <h4>E-mail : benboussedramohamede@gmail.com</h4>
+    </div>
+</noscript>
+
+<noscript id="print-header">
+<div style="line-height:1em">
+            <h4 class="text-center"><?= $_settings->info('name') ?></h4>
+            <h3 class="text-center"><b>Devis N# <?= isset($code) ? $code : '' ?></b></h3>
+        </div>
+    <div class="d-flex w-100">
+        <div class="col-2 text-center">
+            <img style="height:1.8in;width:2in!important;object-fit:cover;object-position:center center" src="<?= validate_image($_settings->info('logo')) ?>" alt="" class="w-100 img-thumbnail rounded-circle">
+        </div>
+        <div class="col-10" style="margin-top:auto;">
+            <h3 class="text-right">
+            Electromécanique, Diagnostic
+            <br>Carosserie, Peinture
+            <br>Mécanique et pièces de rechange
+        </h3>
         </div>
     </div>
     <hr>
@@ -192,9 +229,10 @@ $(function(){
         var head = $('head').clone()
         var p = $('#printout').clone()
         var phead = $($('noscript#print-header').html()).clone()
+        var footer = $($('noscript#footer').html()).clone()
         var el = $('<div>')
         el.append(head)
-        el.find('title').text("Transaction Details-Print View")
+        el.find('title').text("Impression du devis")
         el.append(phead)
         el.append(p)
         el.find('.bg-gradient-navy').css({'background':'#001f3f linear-gradient(180deg, #26415c, #001f3f) repeat-x !important','color':'#fff'})
@@ -204,6 +242,35 @@ $(function(){
         start_loader();
         var nw = window.open("", "_blank", "width="+($(window).width() * .8)+", height="+($(window).height() * .8)+", left="+($(window).width() * .1)+", top="+($(window).height() * .1))
                  nw.document.write(el.html())
+                 nw.document.write('<style>.print-footer { margin-top:20%;text-align:center; width: 100%;height:10vh; }</style>');
+
+// Append footer to the document
+                nw.document.write('<div class="print-footer">' + footer.html() + '</div>');
+                 nw.document.close()
+                 setTimeout(()=>{
+                     nw.print()
+                     setTimeout(()=>{
+                        nw.close()
+                        end_loader()
+                     },300)
+                 },500)
+    })
+    $('#print-immobilisation').click(function(){
+        var head = $('head').clone()
+        var footer = $($('noscript#footer').html()).clone()
+        var p = $($('noscript#immobilisation').html()).clone()
+        var el = $('<div>')
+        el.append(head)
+        el.append(p)
+        el.find('.bg-gradient-navy').css({'background':'#001f3f linear-gradient(180deg, #26415c, #001f3f) repeat-x !important','color':'#fff'})
+        el.find('.bg-gradient-secondary').css({'background':'#6c757d linear-gradient(180deg, #828a91, #6c757d) repeat-x !important','color':'#fff'})
+        el.find('tr.bg-gradient-navy').attr('style',"color:#000")
+        el.find('tr.bg-gradient-secondary').attr('style',"color:#000")
+        start_loader();
+        var nw = window.open("", "_blank", "width="+($(window).width() * .8)+", height="+($(window).height() * .8)+", left="+($(window).width() * .1)+", top="+($(window).height() * .1))
+                 nw.document.write(el.html())
+                 nw.document.write('<style>.print-footer { margin-top:55%;text-align:center; width: 100%;height:10vh; }</style>');
+                    nw.document.write('<div class="print-footer">' + footer.html() + '</div>');
                  nw.document.close()
                  setTimeout(()=>{
                      nw.print()

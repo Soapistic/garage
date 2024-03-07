@@ -27,7 +27,7 @@
                       <a href="./" class="nav-link nav-home">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                          Dashboard
+                          Accueil
                         </p>
                       </a>
                     </li> 
@@ -35,7 +35,7 @@
                       <a href="<?php echo base_url ?>admin/?page=products" class="nav-link nav-products">
                         <i class="nav-icon fas fa-cogs"></i>
                         <p>
-                          Product List
+                          Liste des Produits
                         </p>
                       </a>
                     </li>
@@ -43,7 +43,7 @@
                       <a href="<?php echo base_url ?>admin/?page=inventory" class="nav-link nav-inventory">
                         <i class="nav-icon fas fa-clipboard-check"></i>
                         <p>
-                          Inventory
+                          Inventaire
                         </p>
                       </a>
                     </li>
@@ -51,7 +51,23 @@
                       <a href="<?php echo base_url ?>admin/?page=transactions" class="nav-link nav-transactions">
                         <i class="nav-icon fas fa-clipboard-list"></i>
                         <p>
-                          Transactions
+                          Devis
+                        </p>
+                      </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a href="<?php echo base_url ?>admin/?page=comptabilite" class="nav-link nav-comptabilite">
+                        <i class="nav-icon fas fa-clipboard-list"></i>
+                        <p>
+                          Comptabilité
+                        </p>
+                      </a>
+                    </li>
+                      <li class="nav-item dropdown">
+                      <a href="<?php echo base_url ?>admin/?page=factures" class="nav-link nav-factures">
+                        <i class="nav-icon fas fa-clipboard-list"></i>
+                        <p>
+                          Factures
                         </p>
                       </a>
                     </li>
@@ -61,7 +77,7 @@
                       <a href="<?php echo base_url ?>admin/?page=reports/daily_sales_report" class="nav-link nav-reports_daily_sales_report">
                         <i class="nav-icon far fa-circle"></i>
                         <p>
-                          Daily Sales Report
+                          Rapport des Ventes
                         </p>
                       </a>
                     </li>
@@ -69,7 +85,7 @@
                       <a href="<?php echo base_url ?>admin/?page=reports/daily_service_report" class="nav-link nav-reports_daily_service_report">
                         <i class="nav-icon far fa-circle"></i>
                         <p>
-                          Daily Service Report
+                          Rapport des Factures
                         </p>
                       </a>
                     </li>
@@ -78,7 +94,7 @@
                       <a href="<?php echo base_url ?>admin/?page=services" class="nav-link nav-services">
                         <i class="nav-icon fas fa-th-list"></i>
                         <p>
-                          Service List
+                          Liste de Services
                         </p>
                       </a>
                     </li>
@@ -86,7 +102,7 @@
                       <a href="<?php echo base_url ?>admin/?page=mechanics" class="nav-link nav-mechanics">
                         <i class="nav-icon fas fa-user-friends"></i>
                         <p>
-                          Mechanic List
+                          Liste des Fournisseurs
                         </p>
                       </a>
                     </li>
@@ -94,7 +110,7 @@
                       <a href="<?php echo base_url ?>admin/?page=user/list" class="nav-link nav-user/list">
                         <i class="nav-icon fas fa-users-cog"></i>
                         <p>
-                          User List
+                          Liste des Utilisateurs
                         </p>
                       </a>
                     </li>
@@ -102,7 +118,7 @@
                       <a href="<?php echo base_url ?>admin/?page=system_info" class="nav-link nav-system_info">
                         <i class="nav-icon fas fa-tools"></i>
                         <p>
-                          Settings
+                          Paramètres
                         </p>
                       </a>
                     </li>

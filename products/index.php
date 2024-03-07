@@ -31,7 +31,7 @@
 </style>
 <div class="section py-5">
     <div class="container">
-        <h3 class="text-center"><b>Our Products</b></h3>
+        <h3 class="text-center"><b>Nos Produits</b></h3>
         <hr>
         <div class="row justify-content-center">
             <div class="col-lg-8 col-md-10 col-sm-12 col-sm-12 mb-3">
@@ -58,7 +58,7 @@
                         <p class="card-text truncate-3"><?= str_replace(["\n\r","\n","\r"], "<br/>", $row['description']) ?></p>
                         <div class="card-text"><span class="fa fa-tag me-2"></span> <?= format_num($row['price']) ?></div>
                         <center>
-                            <button class="btn btn-primary px-5 rounded-pill btn-sm read-more" data-id="<?= $row['id'] ?>" type="button">Read More</button>
+                            <button class="btn btn-primary px-5 rounded-pill btn-sm read-more" data-id="<?= $row['id'] ?>" type="button">Voir Plus</button>
                         </center>
                     </div>
                 </div>

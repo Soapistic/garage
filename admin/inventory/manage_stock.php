@@ -15,12 +15,24 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 		<input type="hidden" name ="id" value="<?php echo isset($id) ? $id : '' ?>">
 		<input type="hidden" name ="product_id" value="<?php echo isset($product_id) ? $product_id : (isset($_GET['product_id']) ? $_GET['product_id'] : '') ?>">
 		<div class="form-group">
-			<label for="quantity" class="control-label">Quantity</label>
+			<label for="quantity" class="control-label">Quantité</label>
 			<input type="number" name="quantity" id="quantity" class="form-control form-control-sm rounded-0 text-right" value="<?php echo isset($quantity) ? $quantity : 0; ?>"  required/>
 		</div>
 		<div class="form-group">
-			<label for="stock_date" class="control-label">Stock-In Date</label>
+			<label for="stock_date" class="control-label">Stock à jour</label>
 			<input type="date" name="stock_date" id="stock_date" class="form-control form-control-sm rounded-0 text-right" value="<?php echo isset($stock_date) ? date("Y-m-d", strtotime($stock_date)) : ""; ?>" max="<?= date("Y-m-d") ?>"  required/>
+		</div>
+		<div class="form-group">
+			<label for="stock_date" class="control-label">Fournisseur</label>
+			<select name="fournisseur" id="mechanic_id" class="form-control form-control rounded-0">
+				<option value="" disabled <?= !isset($mechanic_id) ? "selected" : "" ?>></option>
+				<?php 
+				$mechanic_qry = $conn->query("SELECT * FROM `mechanic_list`".(isset($mechanic_id) && !is_null($mechanic_id) ? " or id = '{$mechanic_id}' " : '')."");
+				while($row = $mechanic_qry->fetch_array()):
+				?>
+				<option value="<?= $row['id'] ?>" <?= isset($mechanic_id) && $mechanic_id == $row['id'] ? "selected" : "" ?>><?= $row['firstname'] ?></option>
+				<?php endwhile; ?>
+			</select>
 		</div>
 	</form>
 </div>

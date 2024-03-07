@@ -50,7 +50,7 @@ Class Master extends DBConnection {
 			return $this->capture_err();
 		if($check > 0){
 			$resp['status'] = 'failed';
-			$resp['msg'] = "Service Name already exists.";
+			$resp['msg'] = "Le service existe déjà";
 			return json_encode($resp);
 			exit;
 		}
@@ -64,9 +64,9 @@ Class Master extends DBConnection {
 			$bid = !empty($id) ? $id : $this->conn->insert_id;
 			$resp['status'] = 'success';
 			if(empty($id))
-				$resp['msg'] = "New Service successfully saved.";
+				$resp['msg'] = "Ajouté avec succès";
 			else
-				$resp['msg'] = " Service successfully updated.";
+				$resp['msg'] = " Modifié avec succès";
 			
 		}else{
 			$resp['status'] = 'failed';
@@ -81,7 +81,7 @@ Class Master extends DBConnection {
 		$del = $this->conn->query("UPDATE `service_list` set `delete_flag` = 1 where id = '{$id}'");
 		if($del){
 			$resp['status'] = 'success';
-			$this->settings->set_flashdata('success'," Service successfully deleted.");
+			$this->settings->set_flashdata('success'," Service supprimé avec succès");
 		}else{
 			$resp['status'] = 'failed';
 			$resp['error'] = $this->conn->error;
@@ -99,12 +99,12 @@ Class Master extends DBConnection {
 				$data .= " `{$k}`='{$v}' ";
 			}
 		}
-		$check = $this->conn->query("SELECT * FROM `mechanic_list` where `firstname` = '{$firstname}' and `middlename` = '{$middlename}' and `lastname` = '{$lastname}' ".(!empty($id) ? " and id != {$id} " : "")." ")->num_rows;
+		$check = $this->conn->query("SELECT * FROM `mechanic_list` where `firstname` = '{$firstname}'")->num_rows;
 		if($this->capture_err())
 			return $this->capture_err();
 		if($check > 0){
 			$resp['status'] = 'failed';
-			$resp['msg'] = "Mechanic already exists.";
+			$resp['msg'] = "Fournisseur existe déjà.";
 			return json_encode($resp);
 			exit;
 		}
@@ -118,9 +118,9 @@ Class Master extends DBConnection {
 			$bid = !empty($id) ? $id : $this->conn->insert_id;
 			$resp['status'] = 'success';
 			if(empty($id))
-				$resp['msg'] = "New Mechanic successfully saved.";
+				$resp['msg'] = "Nouveau Fournisseur Ajouté.";
 			else
-				$resp['msg'] = " Mechanic successfully updated.";
+				$resp['msg'] = " Fournisseur modifié.";
 			
 		}else{
 			$resp['status'] = 'failed';
@@ -132,10 +132,10 @@ Class Master extends DBConnection {
 	}
 	function delete_mechanic(){
 		extract($_POST);
-		$del = $this->conn->query("UPDATE `mechanic_list` set `delete_flag` = 1 where id = '{$id}'");
+		$del = $this->conn->query("DELETE FROM `mechanic_list` where id = '{$id}'");
 		if($del){
 			$resp['status'] = 'success';
-			$this->settings->set_flashdata('success'," Mechanic successfully deleted.");
+			$this->settings->set_flashdata('success'," Fournisseur supprimé avec succès.");
 		}else{
 			$resp['status'] = 'failed';
 			$resp['error'] = $this->conn->error;
@@ -158,7 +158,7 @@ Class Master extends DBConnection {
 			return $this->capture_err();
 		if($check > 0){
 			$resp['status'] = 'failed';
-			$resp['msg'] = "Product Name already exists.";
+			$resp['msg'] = "Le produit existe déjà.";
 			return json_encode($resp);
 			exit;
 		}
@@ -172,9 +172,9 @@ Class Master extends DBConnection {
 			$pid = !empty($id) ? $id : $this->conn->insert_id;
 			$resp['status'] = 'success';
 			if(empty($id))
-				$resp['msg'] = "New Product successfully saved.";
+				$resp['msg'] = "Nouveau produt ajouté avec succès.";
 			else
-				$resp['msg'] = " Product successfully updated.";
+				$resp['msg'] = " Produit modifié avec succès.";
 			if(!empty($_FILES['img']['tmp_name'])){
 				$dir = 'uploads/products/';
 				if(!is_dir(base_app.$dir))
@@ -242,9 +242,9 @@ Class Master extends DBConnection {
 			$bid = !empty($id) ? $id : $this->conn->insert_id;
 			$resp['status'] = 'success';
 			if(empty($id))
-				$resp['msg'] = "New Stock has been saved successfully.";
+				$resp['msg'] = "Le stock a été ajouté avec succès.";
 			else
-				$resp['msg'] = " Stock has been updated successfully.";
+				$resp['msg'] = " Le stock a été modifié avec succès.";
 			
 		}else{
 			$resp['status'] = 'failed';
@@ -259,7 +259,7 @@ Class Master extends DBConnection {
 		$del = $this->conn->query("DELETE FROM `inventory_list` where id = '{$id}'");
 		if($del){
 			$resp['status'] = 'success';
-			$this->settings->set_flashdata('success'," Stock has been deleted successfully.");
+			$this->settings->set_flashdata('success'," Le stock a été supprimé avec succès.");
 		}else{
 			$resp['status'] = 'failed';
 			$resp['error'] = $this->conn->error;
@@ -272,7 +272,7 @@ Class Master extends DBConnection {
 		$del = $this->conn->query("UPDATE `product_list` set `delete_flag` = 1 where id = '{$id}'");
 		if($del){
 			$resp['status'] = 'success';
-			$this->settings->set_flashdata('success'," Product successfully deleted.");
+			$this->settings->set_flashdata('success'," Produit supprimé avec succès.");
 		}else{
 			$resp['status'] = 'failed';
 			$resp['error'] = $this->conn->error;
@@ -315,9 +315,9 @@ Class Master extends DBConnection {
 			$resp['tid'] = $tid;
 			$resp['status'] = 'success';
 			if(empty($id))
-				$resp['msg'] = "New Transaction successfully saved.";
+				$resp['msg'] = "Changements sauvegardés.";
 			else
-				$resp['msg'] = " Transaction successfully updated.";
+				$resp['msg'] = " Changements sauvegardés.";
 			if(isset($service_id)){
 				$data = "";
 				foreach($service_id as $k =>$v){
@@ -335,10 +335,10 @@ Class Master extends DBConnection {
 						$resp['sql'] = $sql_service;
 						$resp['error'] = $this->conn->error;
 						if(empty($id)){
-							$resp['msg'] = "Transaction has failed save.";
+							$resp['msg'] = "Changements NON SAUVEGARDES";
 							$this->conn->query("DELETE FROM `transaction_services` where transaction_id = '{$tid}'");
 						}else{
-							$resp['msg'] = "Transaction has failed update.";
+							$resp['msg'] = "Changements non sauvegardés.";
 						}
 						return json_encode($resp);
 					}
@@ -362,10 +362,10 @@ Class Master extends DBConnection {
 						$resp['sql'] = $sql_product;
 						$resp['error'] = $this->conn->error;
 						if(empty($id)){
-							$resp['msg'] = "Transaction has failed save.";
+							$resp['msg'] = "Changement non sauvegardés";
 							$this->conn->query("DELETE FROM `transaction_products` where transaction_id = '{$tid}'");
 						}else{
-							$resp['msg'] = "Transaction has failed update.";
+							$resp['msg'] = "Changements sauvegardés.";
 						}
 						return json_encode($resp);
 					}
@@ -384,7 +384,7 @@ Class Master extends DBConnection {
 		$del = $this->conn->query("DELETE FROM `transaction_list` where id = '{$id}'");
 		if($del){
 			$resp['status'] = 'success';
-			$this->settings->set_flashdata('success'," Transaction successfully deleted.");
+			$this->settings->set_flashdata('success'," Supprimé avec succès");
 		}else{
 			$resp['status'] = 'failed';
 			$resp['error'] = $this->conn->error;
@@ -399,10 +399,10 @@ Class Master extends DBConnection {
 			$resp['status'] = 'success';
 		}else{
 			$resp['status'] = 'failed';
-			$resp['msg'] = "Transaction's status has failed to update.";
+			$resp['msg'] = "Changements  non sauvegardés";
 		}
 		if($resp['status'] == 'success')
-			$this->settings->set_flashdata('success', 'Transaction\'s Status has been updated successfully.');
+			$this->settings->set_flashdata('success', 'Changement sauvegardés');
 		return json_encode($resp);
 	}
 }

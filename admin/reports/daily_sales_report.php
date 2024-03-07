@@ -3,28 +3,36 @@
 	alert_toast("<?php echo $_settings->flashdata('success') ?>",'success')
 </script>
 <?php endif;?>
-<?php $date = isset($_GET['date']) ? $_GET['date'] : date("Y-m-d"); ?>
+<?php
+
+
+$datedebut = isset($_GET['datedebut']) ? $_GET['datedebut'] : date("Y-m-d");
+$datefin = isset($_GET['datefin']) ? $_GET['datefin'] : date("Y-m-d");
+
+?>
 <div class="card card-outline rounded-0 card-navy">
 	<div class="card-header">
-		<h3 class="card-title">Daily Sales Report</h3>
+		<h3 class="card-title">Rapport des Ventes</h3>
 	</div>
 	<div class="card-body">
 		<div class="container-fluid mb-3">
             <fieldset class="px-2 py-1 border">
-                <legend class="w-auto px-3">Filter</legend>
+                <legend class="w-auto px-3">Filtrer</legend>
                 <div class="container-fluid">
                     <form action="" id="filter-form">
                         <div class="row align-items-end">
                             <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <label for="date" class="control-label">Choose Date</label>
-                                    <input type="date" class="form-control form-control-sm rounded-0" name="date" id="date" value="<?= date("Y-m-d", strtotime($date)) ?>" required="required">
+                                    <label for="date" class="control-label">De</label>
+                                    <input type="date" class="form-control form-control-sm rounded-0" name="datedebut" id="date" value="<?= date("Y-m-d", strtotime($date)) ?>" required="required">
+                                    <label for="date" class="control-label">Jusqu'au</label>
+                                    <input type="date" class="form-control form-control-sm rounded-0" name="datefin" id="date" value="<?= date("Y-m-d", strtotime($date)) ?>" required="required">
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <button class="btn btn-primary btn-sm bg-gradient-primary rounded-0"><i class="fa fa-filter"></i> Filter</button>
-                                    <button class="btn btn-light btn-sm bg-gradient-light rounded-0 border" type="button" id="print"><i class="fa fa-print"></i> Print</button>
+                                    <button class="btn btn-primary btn-sm bg-gradient-primary rounded-0"><i class="fa fa-filter"></i> Filtrer</button>
+                                    <button class="btn btn-light btn-sm bg-gradient-light rounded-0 border" type="button" id="print"><i class="fa fa-print"></i> Imprimer</button>
                                 </div>
                             </div>
                         </div>
@@ -46,11 +54,11 @@
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>DateTime</th>
+						<th>Date</th>
 						<th>Code/Client</th>
-						<th>Product Name</th>
-						<th>Price</th>
-						<th>Qty</th>
+						<th>Produit</th>
+						<th>Prix</th>
+						<th>Qté</th>
 						<th>Total</th>
 					</tr>
 				</thead>
@@ -58,7 +66,7 @@
 					<?php 
                     $total = 0;
 					$i = 1;
-                    $qry = $conn->query("SELECT tp.*,tl.code, tl.client_name,pl.name as product,tl.date_created FROM `transaction_products` tp inner join transaction_list tl on tp.transaction_id = tl.id inner join product_list pl on tp.product_id = pl.id where tl.status != 4 and date(tl.date_created) = '{$date}' order by unix_timestamp(tl.date_updated) asc ");
+                    $qry = $conn->query("SELECT tp.*,tl.code, tl.client_name,pl.name as product,tl.date_created FROM `transaction_products` tp inner join transaction_list tl on tp.transaction_id = tl.id inner join product_list pl on tp.product_id = pl.id where tl.status != 4 and date(tl.date_created) BETWEEN '{$datedebut}' AND '{$datefin}' order by unix_timestamp(tl.date_updated) asc ");
                     while($row = $qry->fetch_assoc()):
                         $total += $row['price'] * $row['qty'];
 					?>
@@ -79,7 +87,7 @@
 					<?php endwhile; ?>
 				</tbody>
                 <tfoot>
-                    <th class="py-1 text-center" colspan="6">Total Sales</th>
+                    <th class="py-1 text-center" colspan="6">Total des ventes</th>
                     <th class="py-1 text-right"><?= format_num($total,2) ?></th>
                 </tfoot>
 			</table>

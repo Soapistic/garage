@@ -5,7 +5,7 @@
 <?php endif;?>
 <div class="card card-outline rounded-0 card-navy">
 	<div class="card-header">
-		<h3 class="card-title">List of Transactions</h3>
+		<h3 class="card-title">Liste de Devis</h3>
 		<div class="card-tools">
 			<a href="./?page=transactions/manage_transaction" id="create_new" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span>  Create New</a>
 		</div>
@@ -26,9 +26,9 @@
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Date Updated</th>
+						<th>Date de dernière modif.</th>
 						<th>Code</th>
-						<th>Client</th>
+						<th>Matricule</th>
 						<th>Amount</th>
 						<th>Status</th>
 						<th>Action</th>
@@ -48,22 +48,22 @@
 							<td class="text-center"><?php echo $i++; ?></td>
 							<td><p class="m-0 truncate-1"><?= date("M d, Y H:i", strtotime($row['date_updated'])) ?></p></td>
 							<td><p class="m-0 truncate-1"><?= $row['code'] ?></p></td>
-							<td><p class="m-0 truncate-1"><?= $row['client_name'] ?></p></td>
+							<td><p class="m-0 truncate-1"><?= $row['matricule'] ?></p></td>
 							<td class='text-right'><?= format_num($row['amount']) ?></td>
 							<td class="text-center">
 								<?php 
 								switch($row['status']){
 									case 0:
-										echo '<span class="badge badge-default border px-3 rounded-pill">Pending</span>';
+										echo '<span class="badge badge-default border px-3 rounded-pill">En attente</span>';
 										break;
 									case 1:
 										echo '<span class="badge badge-primary px-3 rounded-pill">On-Progress</span>';
 										break;
 									case 2:
-										echo '<span class="badge badge-success px-3 rounded-pill">Done</span>';
+										echo '<span class="badge badge-success px-3 rounded-pill">Validé</span>';
 										break;
 									case 3:
-										echo '<span class="badge badge-success bg-gradient-teal px-3 rounded-pill">Paid</span>';
+										echo '<span class="badge badge-success bg-gradient-teal px-3 rounded-pill">Payé</span>';
 										break;
 									case 4:
 										echo '<span class="badge badge-danger px-3 rounded-pill">Cancelled</span>';

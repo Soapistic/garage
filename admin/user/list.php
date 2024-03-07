@@ -13,7 +13,7 @@
 </style>
 <div class="card card-outline rounded-0 card-navy">
 	<div class="card-header">
-		<h3 class="card-title">List of Users</h3>
+		<h3 class="card-title">Liste des Utilisateurs</h3>
 		<div class="card-tools">
 			<a href="./?page=user/manage_user" id="create_new" class="btn btn-flat btn-primary"><span class="fas fa-plus"></span>  Create New</a>
 		</div>
@@ -33,10 +33,10 @@
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Date Updated</th>
+						<th>Date de Mise à Jour</th>
 						<th>Avatar</th>
-						<th>Name</th>
-						<th>Username</th>
+						<th>Nom</th>
+						<th>Pseudo</th>
 						<th>Type</th>
 						<th>Action</th>
 					</tr>
@@ -85,7 +85,7 @@
 <script>
 	$(document).ready(function(){
 		$('.delete_data').click(function(){
-			_conf("Are you sure to delete this User permanently?","delete_user",[$(this).attr('data-id')])
+			_conf("Êtes-vous certain de vouloir supprimer définitivement cet utilisateur ?","delete_user",[$(this).attr('data-id')])
 		})
 		$('.table').dataTable({
 			columnDefs: [
@@ -103,14 +103,14 @@
 			data:{id: $id},
 			error:err=>{
 				console.log(err)
-				alert_toast("An error occured.",'error');
+				alert_toast("Une erreur s'est produite.",'error');
 				end_loader();
 			},
 			success:function(resp){
 				if(resp == 1){
 					location.reload();
 				}else{
-					alert_toast("An error occured.",'error');
+					alert_toast("Une erreur s'est produite.",'error');
 					end_loader();
 				}
 			}

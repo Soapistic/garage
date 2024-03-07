@@ -22,7 +22,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 	<form action="" id="product-form">
 		<input type="hidden" name ="id" value="<?php echo isset($id) ? $id : '' ?>">
 		<div class="form-group">
-			<label for="name" class="control-label">Name</label>
+			<label for="name" class="control-label">Nom</label>
 			<input type="text" name="name" id="name" class="form-control form-control-sm rounded-0" value="<?php echo isset($name) ? $name : ''; ?>"  required/>
 		</div>
 		<div class="form-group">
@@ -30,21 +30,21 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 			<textarea type="text" name="description" id="description" class="form-control form-control-sm rounded-0" required><?php echo isset($description) ? $description : ''; ?></textarea>
 		</div>
 		<div class="form-group">
-			<label for="price" class="control-label">Price</label>
+			<label for="price" class="control-label">Prix</label>
 			<input type="number" name="price" id="price" class="form-control form-control-sm rounded-0 text-right" value="<?php echo isset($price) ? $price : ''; ?>"  required/>
 		</div>
 		<div class="form-group">
-			<label for="status" class="control-label">Status</label>
+			<label for="status" class="control-label">Statut</label>
 			<select name="status" id="status" class="form-control form-control-sm rounded-0" required>
-				<option value="1" <?php echo isset($status) && $status == 1 ? 'selected' : '' ?>>Active</option>
-				<option value="0" <?php echo isset($status) && $status == 0 ? 'selected' : '' ?>>Inactive</option>
+				<option value="1" <?php echo isset($status) && $status == 1 ? 'selected' : '' ?>>Disponible</option>
+				<option value="0" <?php echo isset($status) && $status == 0 ? 'selected' : '' ?>>Indisponible</option>
 			</select>
 		</div>
 		<div class="form-group">
-			<label for="" class="control-label">Thumbnail</label>
+			<label for="" class="control-label">Vignette</label>
 			<div class="custom-file">
 				<input type="file" class="custom-file-input rounded-circle" id="customFile1" accept="image/png, image/jpeg" name="img" onchange="displayImg(this,$(this))">
-				<label class="custom-file-label" for="customFile1">Choose file</label>
+				<label class="custom-file-label" for="customFile1">Choisir un Fichier</label>
 			</div>
 		</div>
 		<div class="form-group">
@@ -82,7 +82,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
                 dataType: 'json',
 				error:err=>{
 					console.log(err)
-					alert_toast("An error occured",'error');
+					alert_toast("Une erreur s'est produite.",'error');
 					end_loader();
 				},
 				success:function(resp){
@@ -96,7 +96,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
                             $("html, body,.modal").scrollTop(0);
                             end_loader()
                     }else{
-						alert_toast("An error occured",'error');
+						alert_toast("Une erreur s'est produite.",'error');
 						end_loader();
 					}
 				}

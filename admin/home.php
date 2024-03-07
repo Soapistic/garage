@@ -1,11 +1,10 @@
-<h1>Welcome, <?php echo $_settings->userdata('firstname')." ".$_settings->userdata('lastname') ?>!</h1>
 <hr>
 <div class="row">
         <div class="col-12 col-sm-3 col-md-3">
             <div class="info-box">
               <span class="info-box-icon bg-gradient-navy elevation-1"><i class="fas fa-cogs"></i></span>
               <div class="info-box-content">
-                <span class="info-box-text">Service List</span>
+                <span class="info-box-text">Liste de Services</span>
                 <span class="info-box-number">
                   <?php 
                     $service = $conn->query("SELECT * FROM service_list where delete_flag = 0 and `status` = 1")->num_rows;
@@ -23,7 +22,7 @@
             <div class="info-box">
               <span class="info-box-icon bg-gradient-light border elevation-1"><i class="fas fa-calendar-minus"></i></span>
               <div class="info-box-content">
-                <span class="info-box-text">Pending Transaction</span>
+                <span class="info-box-text">Transactions en cours</span>
                 <span class="info-box-number">
                   <?php 						
                     $total = $conn->query("SELECT * FROM transaction_list where `status` = 0 ")->num_rows;
@@ -118,11 +117,11 @@
       </div>
       <a class="carousel-control-prev" href="#tourCarousel" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
+          <span class="sr-only">Précédent</span>
       </a>
       <a class="carousel-control-next" href="#tourCarousel" role="button" data-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
+          <span class="sr-only">Suivant</span>
       </a>
   </div>
 </div>
